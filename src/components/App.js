@@ -33,11 +33,39 @@ const App = () => {
 		setCurrentPageNumber(() => number);
 	}
 
+	const jumpToFirstPage = () => {
+		if (currentPageNumber === 1) {
+			return;
+		}
+		setCurrentPageNumber(() => 1);
+	}
+
+	const goBackOnePage = () => {
+		if (currentPageNumber === 1) {
+			return;
+		}
+		setCurrentPageNumber((prevPageNumber) => prevPageNumber - 1);
+	}
+
+	const goForwardOnePage = () => {
+		if (currentPageNumber === Math.ceil(users.length / usersPerPage)) {
+			return;
+		}
+		setCurrentPageNumber((prevPageNumber) => prevPageNumber + 1);
+	}
+
+	const jumpToLastPage = () => {
+		if (currentPageNumber === Math.ceil(users.length / usersPerPage)) {
+			return;
+		}
+		setCurrentPageNumber(() => Math.ceil(users.length / usersPerPage));
+	}
+
   return (
     <div className="App m-2 p-4">
 			<SearchBar />
 			<Table users={currentUsers} />
-			<Pages usersPerPage={usersPerPage} totalUsers={users.length} handleChangePage={handleChangePage} currentPageNumber={currentPageNumber} />
+			<Pages usersPerPage={usersPerPage} totalUsers={users.length} handleChangePage={handleChangePage} currentPageNumber={currentPageNumber} jumpToFirstPage={jumpToFirstPage} jumpToLastPage={jumpToLastPage} goBackOnePage={goBackOnePage} goForwardOnePage={goForwardOnePage} />
     </div>
   );
 }
