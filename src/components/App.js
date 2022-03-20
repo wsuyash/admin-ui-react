@@ -5,7 +5,8 @@ import Table from './Table';
 
 const App = () => {
 	const [users, setUsers] = useState(() => []);
-	const [pageNumber, setPageNumber] = useState(() => 1);
+	const [currentPageNumber, setCurrentPageNumber] = useState(() => 1);
+	const [usersPerPage, setUsersPerPage] = useState(() => 10);
 
 	useEffect(() => {
 		const getUsers = async () => {
@@ -18,20 +19,25 @@ const App = () => {
 
 			} catch (error) {
 				console.log(error);
-				setUsers(() => []);
 			}	
 		}
 
 		getUsers();
 	}, []);
 
+	const lastUserIndex = currentPageNumber * usersPerPage;
+	const firstUserIndex = lastUserIndex - usersPerPage;
+	const currentUsers = users.slice(firstUserIndex, lastUserIndex);
 
+	const handleChangePage = (number) => {
+		setCurrentPageNumber(() => number);
+	}
 
   return (
     <div className="App m-2 p-4">
 			<SearchBar />
-			<Table users={users} />
-			<Pages />
+			<Table users={currentUsers} />
+			<Pages usersPerPage={usersPerPage} totalUsers={users.length} handleChangePage={handleChangePage} currentPageNumber={currentPageNumber} />
     </div>
   );
 }
