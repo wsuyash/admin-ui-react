@@ -1,6 +1,7 @@
 const Pages = (props) => {
 	const { usersPerPage, totalUsers, handleChangePage, currentPageNumber, jumpToFirstPage, jumpToLastPage, goBackOnePage, goForwardOnePage } = props;
 
+	// Create appropriate page numbers
 	const pageNumbers = [];
 	for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
 		pageNumbers.push(i);
