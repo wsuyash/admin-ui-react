@@ -6,7 +6,7 @@ import Table from './Table';
 const App = () => {
 	const [users, setUsers] = useState(() => []);
 	const [currentPageNumber, setCurrentPageNumber] = useState(() => 1);
-	const [usersPerPage, setUsersPerPage] = useState(() => 10);
+	const [usersPerPage] = useState(() => 10);
 
 	useEffect(() => {
 		const getUsers = async () => {
@@ -61,10 +61,20 @@ const App = () => {
 		setCurrentPageNumber(() => Math.ceil(users.length / usersPerPage));
 	}
 
+	const handleDelete = (id) => {
+		let newUsers = users.filter(user => user.id !== id)
+
+		setUsers(newUsers);
+
+		if (currentUsers.length === 1) {
+			goBackOnePage();
+		}
+	}
+
   return (
     <div className="App m-2 p-4">
 			<SearchBar />
-			<Table users={currentUsers} />
+			<Table users={currentUsers} handleDelete={handleDelete} />
 			<Pages usersPerPage={usersPerPage} totalUsers={users.length} handleChangePage={handleChangePage} currentPageNumber={currentPageNumber} jumpToFirstPage={jumpToFirstPage} jumpToLastPage={jumpToLastPage} goBackOnePage={goBackOnePage} goForwardOnePage={goForwardOnePage} />
     </div>
   );

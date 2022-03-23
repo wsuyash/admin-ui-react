@@ -8,15 +8,16 @@ const Pages = (props) => {
 
 	return (
 		<ul className="Pages flex justify-center items-center gap-4 flex-wrap m-auto">
-
 			
-			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900" onClick={jumpToFirstPage}>
+			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900"
+				onClick={() => jumpToFirstPage()}	
+			>
 					<div className="w-6 h-6 text-center">
 						<i className="fa-solid fa-angles-left"></i>
 					</div>
 			</li>
 
-			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900" onClick={goBackOnePage}>
+			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900" onClick={() => goBackOnePage()}>
 					<div className="w-6 h-6 text-center">
 						<i className="fa-solid fa-angle-left"></i>
 					</div>
@@ -33,13 +34,13 @@ const Pages = (props) => {
 				</li>
 			})}
 
-			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900" onClick={goForwardOnePage}>
+			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900" onClick={() => goForwardOnePage()}>
 					<div className="w-6 h-6 text-center">
 						<i className="fa-solid fa-angle-right"></i>
 					</div>
 			</li>
 
-			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900" onClick={jumpToLastPage}>
+			<li className="text-white p-2 rounded-full bg-blue-500 hover:cursor-pointer hover:bg-blue-900" onClick={() => jumpToLastPage()}>
 					<div className="w-6 h-6 text-center">
 						<i className="fa-solid fa-angles-right"></i>
 					</div>
